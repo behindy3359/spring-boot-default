@@ -1,7 +1,7 @@
 package codingon.spring_boot_default.controller;
 
 
-import codingon.spring_boot_default.utils.Person;
+import codingon.spring_boot_default.dto.Person;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

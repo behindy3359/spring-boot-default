@@ -1,8 +1,8 @@
-package codingon.spring_boot_default.utils;
+package codingon.spring_boot_default.dto;
 
 public class Person {
-  public String name;
-  public int age;
+  private String name;
+  private int age;
 
   public Person(String name, int age) {
     this.name = name;
