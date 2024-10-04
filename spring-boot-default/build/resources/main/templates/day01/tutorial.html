@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<!--#1. Thymeleaf 템플릿 소개-->
+<!--    <p th:text="'안녕하세요. ' + ${msg}">안녕 반가워</p>-->
+
+<!--#2. Thymeleaf 표현식과 문법-->
+<h3>th:text</h3>
+<p>텍스트 표현</p>
+<p th:text="'안녕하세요. ' + ${hello}"></p>
+
+<h3>th:utext</h3>
+<p>HTML 태그를 반영한 텍스트</p>
+<p th:utext="${uText}"></p>
+
+<h3>th:value</h3>
+<p>HTML 요소 중 value 속성을 이용하고 싶을 때 사용</p>
+<input type="text" th:value="${value}">
+
+<h3>th:with</h3>
+<p>변수 값을 지정해서 사용하고 싶을 때</p>
+<p>서버에서 전달받은 withValue 속성 값을 temp 라는 변수에 저장해서 사용 중인 예시</p>
+<div th:with="temp=${withValue}" th:text="${temp} + '님, 반갑습니다.'"></div>
+
+<h3>th:href</h3>
+<a th:href="@{/{id}(id=${link})}">Link 1</a>
+<a th:href="@{/hi}">Link 2</a>
+<a th:href="@{https://www.google.com}">Google</a>
+
+<h3>th:src</h3>
+<!--<img th:src="${imgSrc}" alt="오울이" width="400">-->
+<img th:src="'/img/' + ${imgSrc}" alt="오울이" width="400">
+<br>
+
+<h3>th:switch</h3>
+<p>switch case 문을 다루고자할 때 사용. 단, *는 switch-case 문에서의 default 를 의미</p>
+<div th:switch="${userRole}">
+    <p th:case="'admin'">Hello, Admin</p>
+    <p th:case="'user'">Hello, User</p>
+    <p th:case="*">Hello, Unknown</p>
+</div>
+
+<h3>th:if, th:unless</h3>
+<div>
+    <p th:if="${isAdmin}">Welcome, Admin</p>
+    <p th:unless="${isAdmin}">Welcome, User</p>
+</div>
+</body>
+</html>
