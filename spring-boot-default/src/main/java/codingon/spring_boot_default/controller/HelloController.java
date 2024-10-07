@@ -4,7 +4,7 @@ package codingon.spring_boot_default.controller;
 import codingon.spring_boot_default.dto.Person;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
@@ -79,4 +79,54 @@ public class HelloController {
     model.addAttribute("persons", persons);
     return "day01/ex02";
   }
+
+  @GetMapping("/introduce/{name}")
+  public String getEx03(@PathVariable String name, Model model) {
+
+    model.addAttribute("name", name);
+    return "day02/ex03";
+  }
+
+  @GetMapping("/introduce2")
+  public String getEx04(@RequestParam(value = "age") int age, @RequestParam(value = "name") String name, Model model) {
+
+    model.addAttribute("name", name);
+    model.addAttribute("age", age);
+    return "day02/ex04";
+  }
+  @GetMapping("/day02/ex05")
+  public String getEx05() {
+    return "day02/ex05";
+  }
+
+  @PostMapping("/post/example")
+  public String postEx05(
+      @RequestParam String name,
+      @RequestParam String gender,
+      @RequestParam String birthYear,
+      @RequestParam String birthMonth,
+      @RequestParam String birthDay,
+      @RequestParam(required = false) String[] interests,
+      Model model
+  ) {
+    System.out.println("이름: " + name);
+    System.out.println("성별: " + gender);
+    System.out.println("생년월일: " + birthYear + "-" + birthMonth + "-" + birthDay);
+
+    String interestsStr = "";
+    if (interests != null) {
+      interestsStr = String.join(", ", interests);
+      System.out.println("관심사: " + interestsStr);
+    } else {
+      System.out.println("선택된 관심사 없음");
+    }
+
+    model.addAttribute("name", name);
+    model.addAttribute("gender", gender);
+    model.addAttribute("birth", birthYear + "-" + birthMonth + "-" + birthDay);
+    model.addAttribute("interests", interestsStr);
+
+    return "day02/ex051";
+  }
+
 }

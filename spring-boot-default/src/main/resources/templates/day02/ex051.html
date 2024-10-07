@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <h3>폼 전송 - 실습</h3>
+    이름 : <span th:text="${name}">이름</span><br/>
+    성별 : <span th:text="${gender}">성별</span><br/>
+    생년월일 : <span th:text="${birth}">생년월일</span><br/>
+    관심사 : <span th:text="${interests}">관심사</span><br/>
+    <a href="/">홈으로</a>
+</body>
+</html>

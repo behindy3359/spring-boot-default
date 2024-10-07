@@ -1,0 +1,35 @@
+body {
+  margin-bottom: 500px;
+}
+
+h1 {
+  margin-top: 80px;
+  color: blue;
+}
+
+.forms-container {
+  display: flex;
+  gap: 20px;
+}
+
+.form-card {
+  border: 1px solid #ddd;
+  padding: 4px 8px;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+}
+
+.result-container {
+  color: #fff;
+}
+
+#dto-result-container {
+  background: #0d7a56;
+}
+
+#vo-result-container {
+  background: #0a49a1;
+}

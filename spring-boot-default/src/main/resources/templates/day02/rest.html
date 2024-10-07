@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>REST API (GET, POST)</title>
+
+  <!-- axios -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <!-- css -->
+  <link rel="stylesheet" href="/css/req.css" />
+  <!-- js -->
+  <script src="/js/req.js" defer></script>
+</head>
+<body>
+<h1>GET 요청</h1>
+<div class="forms-container">
+  <form action="/get/res1" method="GET" class="form-card">
+    <h3>#1. Get Method. query string</h3>
+    <input type="text" name="name" placeholder="이름" /><br />
+    <input type="number" name="age" placeholder="나이" />
+    <br />
+    <button type="submit">Get 전송</button>
+  </form>
+  <form action="/get/res2" method="GET" class="form-card">
+    <h3>#2. Get Method. query string (required=false)</h3>
+    <button type="submit">Get 전송</button>
+  </form>
+  <div class="form-card">
+    <h3>#3. Get Method. path variable</h3>
+    <a href="/get/res3/홍길동/20"> get/res3/홍길동/20 </a>
+    <br />
+    <a href="/get/res3/홍길동"> get/res3/홍길동 </a
+    ><span>(error, 경로 변수 값 필수 확인)</span>
+  </div>
+  <div class="form-card">
+    <h3>#4. Get Method. path variable (optional)</h3>
+    <a href="/get/res4/성춘향"> get/res4/성춘향 </a>
+    <br />
+    <a href="/get/res4/성춘향/21"> get/res4/성춘향/21 </a>
+  </div>
+</div>
+
+<h1>POST 요청</h1>
+<div class="forms-container">
+  <form action="/post/res1" method="POST" class="form-card">
+    <h3>#5. Post Method. form data (required=true)</h3>
+    <input type="text" name="name" placeholder="이름" /><br />
+    <input type="text" name="age" placeholder="나이" />
+    <br />
+    <button type="submit">Post 전송</button>
+  </form>
+  <form action="/post/res2" method="POST" class="form-card">
+    <h3>#6. Post Method. form data (required=false)</h3>
+    <input type="text" name="name" placeholder="이름" /><br />
+    <input type="text" name="age" placeholder="나이" />
+    <br />
+    <button type="submit">Post 전송</button>
+  </form>
+  <form action="/post/res3" method="POST" class="form-card">
+    <h3>#7. Post Method. @ResponseBody Annotation</h3>
+    <input type="text" name="name" placeholder="이름" /><br />
+    <input type="text" name="age" placeholder="나이" />
+    <br />
+    <button type="submit">Post 전송</button>
+  </form>
+</div>
+</body>
+</html>
