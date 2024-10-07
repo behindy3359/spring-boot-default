@@ -1,6 +1,7 @@
 package codingon.spring_boot_default.controller;
 
 import codingon.spring_boot_default.dto.UserDTOEX;
+import codingon.spring_boot_default.vo.UserVOEX;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -145,5 +146,102 @@ public class RestController {
     System.out.println("[POST] userDTO (name) = " + userDTO.getName());
     System.out.println("[POST] userDTO (age) = " + userDTO.getAge());
     return userDTO.getName() + "    " + userDTO.getAge();
+  }
+
+  @GetMapping("/vo/res1")
+  @ResponseBody
+  public String voRes1(@ModelAttribute UserVOEX vo){
+    System.out.println("[GET] UserVO (name) = " + vo.getName());
+    System.out.println("[GET] UserVO (age) = " + vo.getAge());
+
+    return vo.getName() + "    " + vo.getAge();
+  }
+
+  @PostMapping("/vo/res2")
+  @ResponseBody
+  public String voRes2(UserVOEX vo){
+    System.out.println("[POST] UserVO (name) = " + vo.getName());
+    System.out.println("[POST] UserVO (age) = " + vo.getAge());
+    return vo.getName() + "    " + vo.getAge();
+  }
+
+  @PostMapping("/vo/res3")
+  @ResponseBody
+  public String voRes3(@RequestBody UserVOEX vo){
+    System.out.println("[POST] UserVO (name) = " + vo.getName());
+    System.out.println("[POST] UserVO (age) = " + vo.getAge());
+    return vo.getName() + "    " + vo.getAge();
+  }
+
+  @GetMapping("/axios/res1")
+  @ResponseBody
+  public String getAxiosRes1(
+      @RequestParam String name,
+      @RequestParam String age
+  ){
+    System.out.println("[GET], request query string (name) = " + name);
+    System.out.println("[GET], request query string (age) = " + age);
+
+    return name + "    " + age;
+  }
+
+  @GetMapping("/axios/res2")
+  @ResponseBody
+  public String getAxiosRes2(UserDTOEX dto){
+    System.out.println("[POST], request query string (name) = " + dto.getName());
+    System.out.println("[POST], request query string (age) = " + dto.getAge());
+
+    return dto.getName() + "    " + dto.getAge();
+  }
+
+  @PostMapping("/axios/res3")
+  @ResponseBody
+  public String postAxiosRes3(@RequestParam String name, @RequestParam String age){
+    System.out.println("[GET], request query string (name) = " + name);
+    System.out.println("[GET], request query string (age) = " + age);
+
+    return name + "    " + age;
+  }
+
+  @PostMapping("/axios/res4")
+  @ResponseBody
+  public String postAxiosRes4(UserDTOEX dto){
+    System.out.println("[POST], request query string (name) = " + dto.getName());
+    System.out.println("[POST], request query string (age) = " + dto.getAge());
+
+    return dto.getName() + "    " + dto.getAge();
+  }
+
+  @GetMapping("/axios/vo/res1")
+  @ResponseBody
+  public String getAxiosVoRes1(
+      @RequestParam String name,
+      @RequestParam String age
+  ){
+    return name + "    " + age;
+  }
+
+  @GetMapping("/axios/vo/res2")
+  @ResponseBody
+  public String getAxiosVoRes2(UserVOEX vo){
+    return vo.getName() + "    " + vo.getAge();
+  }
+
+  @PostMapping("/axios/vo/res3")
+  @ResponseBody
+  public String postAxiosVoRes3(@RequestParam String name, @RequestParam String age){
+    System.out.println("[GET], request query string (name) = " + name);
+    System.out.println("[GET], request query string (age) = " + age);
+
+    return name + "    " + age;
+  }
+
+  @PostMapping("/axios/vo/res4")
+  @ResponseBody
+  public String postAxiosVoRes4(UserVOEX vo){
+    System.out.println("[POST], request query string (name) = " + vo.getName());
+    System.out.println("[POST], request query string (age) = " + vo.getAge());
+
+    return vo.getName() + "    " + vo.getAge();
   }
 }

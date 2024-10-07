@@ -112,5 +112,51 @@
   </form>
 </div>
 
+<h1>DTO 이용 with. Axios</h1>
+<div class="box">
+  <div id="dto-result-container" class="result-container"></div>
+  <div class="forms-container">
+    <form id="form_dto1" class="form-card">
+      <h3>#14. DTO with Get Method, Axios</h3>
+      <input type="text" name="name" placeholder="이름" /><br />
+      <input type="text" name="age" placeholder="나이" /><br />
+      <button type="button" onclick="dtoRes1();">GET (일반) - axios</button>
+      <button type="button" onclick="dtoRes2();">Get (DTO) - axios</button>
+    </form>
+    <form id="form_dto2" class="form-card">
+      <h3>#15. DTO with POST Method, Axios</h3>
+      <input type="text" name="name" placeholder="이름" /><br />
+      <input type="text" name="age" placeholder="나이" /><br />
+      <button type="button" onclick="dtoRes3();">
+        Post (일반) - axios
+      </button>
+      <button type="button" onclick="dtoRes4();">Post (DTO) - axios</button>
+      <button type="button" onclick="dtoRes5();">Post (DTO) - axios</button>
+    </form>
+  </div>
+</div>
+
+<h1>VO 이용 with. Axios</h1>
+<div class="box">
+  <div id="vo-result-container" class="result-container"></div>
+  <div class="forms-container">
+    <form id="form_vo1" class="form-card">
+      <h3>#16. VO with GET Method, Axios</h3>
+      <input type="text" name="name" placeholder="이름" /><br />
+      <input type="text" name="age" placeholder="나이" /><br />
+      <button type="button" onclick="voRes1();">GET (일반) - axios</button>
+      <button type="button" onclick="voRes2();">Get (VO) - axios</button>
+    </form>
+    <form id="form_vo2" class="form-card">
+      <h3>#17. VO with POST Method, Axios</h3>
+      <input type="text" name="name" placeholder="이름" /><br />
+      <input type="text" name="age" placeholder="나이" /><br />
+      <button type="button" onclick="voRes3();">Post (일반) - axios</button>
+      <button type="button" onclick="voRes4();">Post (VO) - axios</button>
+      <button type="button" onclick="voRes5();">Post (VO) - axios</button>
+    </form>
+  </div>
+</div>
+
 </body>
 </html>
