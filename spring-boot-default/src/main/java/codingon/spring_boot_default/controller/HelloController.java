@@ -128,5 +128,4 @@ public class HelloController {
 
     return "day02/ex051";
   }
-
 }
