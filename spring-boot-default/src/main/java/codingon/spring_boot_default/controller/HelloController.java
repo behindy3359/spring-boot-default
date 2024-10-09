@@ -94,6 +94,7 @@ public class HelloController {
     model.addAttribute("age", age);
     return "day02/ex04";
   }
+
   @GetMapping("/day02/ex05")
   public String getEx05() {
     return "day02/ex05";
