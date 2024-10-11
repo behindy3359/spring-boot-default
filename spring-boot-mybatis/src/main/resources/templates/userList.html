@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User List</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="/user.css">
+</head>
+<body>
+<h1>User List</h1>
+<a href="/users/new" class="btn">유저 등록</a>
+<table id="userTable">
+    <thead>
+    <tr>
+        <th>No</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        fetchUsers();
+    });
+
+    function fetchUsers() {
+        axios.get('/api/users')
+            .then(function (response) {
+                const users = response.data;
+                console.log(users);
+                const tbody = document.querySelector('#userTable tbody');
+                tbody.innerHTML = '';
+                users.forEach(function(user) {
+                    const row = `
+                    <tr>
+                        <td>${user.no}</td>
+                        <td>${user.username}</td>
+                        <td>${user.email}</td>
+                        <td class="action-buttons">
+                            <a href="/users/${user.id}/edit" class="btn">수정</a>
+                            <button onclick="deleteUser(${user.id})" class="btn btn-danger">삭제</button>
+                        </td>
+                    </tr>
+                `;
+                    tbody.innerHTML += row;
+                });
+            })
+            .catch(function (error) {
+                console.error('Error:', error);
+            });
+    }
+
+    function deleteUser(id) {
+        if (confirm('정말로 삭제하시겠습니까?')) {
+            axios.delete('/api/users/' + id)
+                .then(function (response) {
+                    fetchUsers();
+                })
+                .catch(function (error) {
+                    console.error('Error:', error);
+                });
+        }
+    }
+</script>
+</body>
+</html>

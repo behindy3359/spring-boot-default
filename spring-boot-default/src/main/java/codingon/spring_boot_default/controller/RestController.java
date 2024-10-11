@@ -17,7 +17,6 @@ public class RestController {
       @RequestParam(value = "age" ) int age,
       Model model
   ){
-
     System.out.println("[GET], request query string (name) = " + name);
     System.out.println("[GET], request query string (age) = " + age);
 
