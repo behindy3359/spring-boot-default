@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>게시글 상세 보기</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<h1>게시글 상세 보기</h1>
+<div th:if="${board != null}">
+  <h2 th:text="${board.title}"></h2>
+  <p>작성자: <span th:text="${board.writer}"></span></p>
+  <p>작성일: <span th:text="${#temporals.format(board.registered, 'yyyy-MM-dd HH:mm')}"></span></p>
+  <div>
+    <h3>내용:</h3>
+    <p th:text="${board.content}"></p>
+  </div>
+  <div>
+    <a th:href="@{/boards/{id}/edit(id=${board.id})}">수정</a>
+    <a th:href="@{/boards/{id}/delete(id=${board.id})}"
+       onclick="return confirm('정말로 이 게시글을 삭제하시겠습니까?');">삭제</a>
+  </div>
+</div>
+<div th:if="${board == null}">
+  <p>해당 게시글을 찾을 수 없습니다.</p>
+</div>
+<a href="/boards">목록으로 돌아가기</a>
+</body>
+</html>
