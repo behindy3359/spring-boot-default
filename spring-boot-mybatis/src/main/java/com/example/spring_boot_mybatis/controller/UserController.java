@@ -1,11 +1,10 @@
 package com.example.spring_boot_mybatis.controller;
 
+import com.example.spring_boot_mybatis.domain.User;
 import com.example.spring_boot_mybatis.dto.UserDTO;
 import com.example.spring_boot_mybatis.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,5 +20,27 @@ public class UserController {
     return userService.getAllUsers();
   }
 
+  @GetMapping("/{id}")
+  public UserDTO getUser(@PathVariable Long id){
+    return userService.getUser(id);
+  }
 
+  @PostMapping
+  public UserDTO cUser(@RequestBody UserDTO dto){
+    userService.cUser(dto);
+    return dto;
+  }
+
+  @PutMapping("/{id}")
+  public UserDTO uUser(@PathVariable Long id, @RequestBody UserDTO dto){
+    dto.setId(id);
+    userService.uUser(dto);
+    return dto;
+  }
+
+
+  @DeleteMapping("/{id}")
+  public void dUser(@PathVariable Long id){
+    userService.dUser(id);
+  }
 }

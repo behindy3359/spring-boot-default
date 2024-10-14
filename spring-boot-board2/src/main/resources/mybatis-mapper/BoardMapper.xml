@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.spring_boot_mybatis.mapper.BoardMapper">
+    <!-- XML 기반의 MyBatis 매퍼 사용 -->
+    <select id="findAllBoards" resultType="com.example.spring_boot_board2.domain.Board">
+        SELECT * FROM board
+    </select>
+    <select id="findOneBoard" parameterType="long" resultType="com.example.spring_boot_board2.domain.Board">
+        SELECT * FROM board where id = #{id}
+    </select>
+    <insert id="cboard" parameterType="com.example.spring_boot_board2.domain.Board" useGeneratedKeys="true" keyProperty="id">
+        insert into board (username, email) values (#{username},#{email})
+    </insert>
+    <update id="uboard" parameterType="com.example.spring_boot_board2.domain.Board">
+        update board set username = #{username}, email = #{email} where id = #{id}
+    </update>
+    <delete id="dboard" parameterType="com.example.spring_boot_board2.domain.Board">
+        delete FROM board where id = #{id}
+    </delete>
+</mapper>

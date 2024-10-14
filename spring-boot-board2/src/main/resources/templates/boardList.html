@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User List</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="/user.css">
+</head>
+<body>
+<h1>board List</h1>
+<a href="/boards/new" class="btn">게시글 등록</a>
+<table id="boardTable">
+    <thead>
+    <tr>
+        <th>id</th>
+        <th>title</th>
+        <th>content</th>
+        <th>writer</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        fetchBoards();
+    });
+
+    function fetchBoards() {
+        axios.get('/api/boards')
+            .then(function (response) {
+                const boards = response.data;
+                console.log(boards);
+                const tbody = document.querySelector('#boardTable tbody');
+                tbody.innerHTML = '';
+                boards.forEach(function(board) {
+                    const row = `
+                    <tr>
+                        <td>${board.id}</td>
+                        <td>${board.title}</td>
+                        <td>${board.content}</td>
+                        <td>${board.writer}</td>
+                        <td class="action-buttons">
+                            <a href="/boards/${board.id}/edit" class="btn">수정</a>
+                            <button onclick="deleteBoard(${board.id})" class="btn btn-danger">삭제</button>
+                        </td>
+                    </tr>
+                `;
+                    tbody.innerHTML += row;
+                });
+            })
+            .catch(function (error) {
+                console.error('Error:', error);
+            });
+    }
+
+    function deleteBoard(id) {
+        if (confirm('정말로 삭제하시겠습니까?')) {
+            let newid = encodeURI(id);
+            axios.delete('/api/boards/' + newid)
+                .then(function (response) {
+                    fetchBoards();
+                })
+                .catch(function (error) {
+                    console.error('Error:', error);
+                });
+        }
+    }
+</script>
+</body>
+</html>

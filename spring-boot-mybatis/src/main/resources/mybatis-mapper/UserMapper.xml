@@ -5,4 +5,16 @@
     <select id="findAll" resultType="com.example.spring_boot_mybatis.domain.User">
         SELECT * FROM users
     </select>
+    <select id="findOne" parameterType="long" resultType="com.example.spring_boot_mybatis.domain.User">
+        SELECT * FROM users where id = #{id}
+    </select>
+    <insert id="cUser" parameterType="com.example.spring_boot_mybatis.domain.User" useGeneratedKeys="true" keyProperty="id">
+        insert into users (username, email) values (#{username},#{email})
+    </insert>
+    <update id="uUser" parameterType="com.example.spring_boot_mybatis.domain.User">
+        update users set username = #{username}, email = #{email} where id = #{id}
+    </update>
+    <delete id="dUser" parameterType="com.example.spring_boot_mybatis.domain.User">
+        delete FROM users where id = #{id}
+    </delete>
 </mapper>
