@@ -20,7 +20,7 @@ public class BoardController {
   }
 
   @GetMapping("/{id}")
-  public BoardDTO getBoard(@PathVariable String id){
+  public BoardDTO getBoard(@PathVariable Long id){
     return BoardService.getBoard(id);
   }
 

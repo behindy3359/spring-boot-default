@@ -1,7 +1,6 @@
 package com.example.spring_boot_board2.service;
 
 import com.example.spring_boot_board2.domain.Board;
-import com.example.spring_boot_board2.domain.User;
 import com.example.spring_boot_board2.dto.BoardDTO;
 import com.example.spring_boot_board2.mapper.BoardMapper;
 import org.springframework.beans.factory.annotation.Autowired;
