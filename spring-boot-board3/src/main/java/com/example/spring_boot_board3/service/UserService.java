@@ -1,8 +1,8 @@
-package com.example.spring_boot_jpa.service;
+package com.example.spring_boot_board3.service;
 
-import com.example.spring_boot_jpa.dto.UserDTO;
-import com.example.spring_boot_jpa.entity.UserEntity;
-import com.example.spring_boot_jpa.repository.UserRepository;
+import com.example.spring_boot_board3.dto.UserDTO;
+import com.example.spring_boot_board3.entity.UserEntity;
+import com.example.spring_boot_board3.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

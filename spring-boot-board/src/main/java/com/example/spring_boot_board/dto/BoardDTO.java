@@ -1,4 +1,4 @@
-package com.example.spring_boot_board.dto;
+package com.example.spring_boot_board3.dto;
 
 import lombok.Getter;
 import lombok.Setter;

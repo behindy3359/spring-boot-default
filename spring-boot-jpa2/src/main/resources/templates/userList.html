@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User List</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="/user.css">
+</head>
+<body>
+<h1>User List</h1>
+<div class="btn-container">
+    <a href="/users/new" class="btn btn-new">유저 등록</a>
+    <div class="search-section">
+        <input type="text" id="searchInput" placeholder="유저명 혹은 이메일로 검색해보세요">
+        <button onclick="searchUsers()" class="btn">검색</button>
+    </div>
+
+    <div class="username-check-section">
+        <input type="text" id="usernameInput" placeholder="유저명으로 해당 유저가 존재하는지 확인해보세요 (전체 이름 작성 필요)">
+        <button onclick="checkUsername()" class="btn">중복 확인</button>
+    </div>
+    <span id="usernameResult"></span>
+</div>
+
+
+<table id="userTable">
+    <thead>
+    <tr>
+        <th>No</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        fetchUsers();
+    });
+
+    function fetchUsers() {
+        axios.get('/api/users')
+            .then(function (response) {
+                const users = response.data;
+                updateUserTable(users);
+            })
+            .catch(function (error) {
+                console.error('Error:', error);
+            });
+    }
+
+    function searchUsers() {
+        const keyword = document.getElementById('searchInput').value;
+        axios.get(`/api/users/search?keyword=${keyword}`)
+            .then(function (response) {
+                const users = response.data;
+                updateUserTable(users);
+            })
+            .catch(function (error) {
+                console.error('Error:', error);
+            });
+    }
+
+    function checkUsername() {
+        const username = document.getElementById('usernameInput').value;
+        axios.get(`/api/users/exists?username=${username}`)
+            .then(function (response) {
+                const exists = response.data;
+                const resultSpan = document.getElementById('usernameResult');
+                if (exists) {
+                    resultSpan.textContent = '해당 유저가 이미 존재해요!';
+                    resultSpan.style.color = 'red';
+                } else {
+                    resultSpan.textContent = '해당 유저명을 사용할 수 있어요!';
+                    resultSpan.style.color = 'green';
+                }
+            })
+            .catch(function (error) {
+                console.error('Error:', error);
+            });
+    }
+
+    function updateUserTable(users) {
+        const tbody = document.querySelector('#userTable tbody');
+        tbody.innerHTML = '';
+        users.forEach(function(user) {
+            const row = `
+                <tr>
+                    <td>${user.no}</td>
+                    <td>${user.username}</td>
+                    <td>${user.email}</td>
+                    <td class="action-buttons">
+                        <a href="/users/${user.id}/edit" class="btn">수정</a>
+                        <button onclick="deleteUser(${user.id})" class="btn btn-danger">삭제</button>
+                    </td>
+                </tr>
+            `;
+            tbody.innerHTML += row;
+        });
+    }
+
+    function deleteUser(id) {
+        if (confirm('정말로 삭제하시겠습니까?')) {
+            axios.delete('/api/users/' + id)
+                .then(function (response) {
+                    fetchUsers();
+                })
+                .catch(function (error) {
+                    console.error('Error:', error);
+                });
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,9 +1,10 @@
-package com.example.spring_boot_jpa.controller;
+package com.example.spring_boot_board3.controller;
 
-import com.example.spring_boot_jpa.dto.UserDTO;
-import com.example.spring_boot_jpa.service.UserService;
+import com.example.spring_boot_board3.dto.UserDTO;
+import com.example.spring_boot_board3.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -13,6 +14,7 @@ public class UserController {
   // 입력값에 대한 검증은 관례적으로 컨트롤러에서 수행
   @Autowired
   private UserService userService;
+
   @GetMapping
   public List<UserDTO> listUsers() {
     return userService.getAllUsers();
@@ -28,6 +30,7 @@ public class UserController {
     userService.createUser(dto);
     return dto;
   }
+
   @PutMapping("/{id}")
   public void updateUser(@PathVariable Long id, @RequestBody UserDTO dto){
     userService.updateUser(dto, id);
