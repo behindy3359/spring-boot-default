@@ -17,7 +17,7 @@ public class TodoEntity {
   private Long id;
 
   @Column(name = "userId", nullable = false)
-  private String UserId;
+  private String userId;
 
   @Column(name = "title", nullable = false)
   private String title;
