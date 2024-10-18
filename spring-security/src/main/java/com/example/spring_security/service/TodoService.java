@@ -27,6 +27,9 @@ public class TodoService {
     return repository.findByUserId(entity.getUserId()); // 추가한 행을 바로 다시 보여주기
   }
 
+  public List<TodoEntity> readTodo( final String user ){
+    return repository.findByUserId(user);
+  }
 
   // 유효성 검사
   private void validate(final TodoEntity entity){
