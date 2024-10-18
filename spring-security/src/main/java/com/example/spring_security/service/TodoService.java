@@ -31,6 +31,17 @@ public class TodoService {
     return repository.findByUserId(user);
   }
 
+  public void deleteTodo(final Long id){
+      repository.deleteById(id);
+  }
+  public List<TodoEntity> updateTodo(final TodoEntity entity){
+    validate(entity);
+    repository.save(entity);
+    log.info("Entity Id : {} is updated", entity.getId());
+
+    return repository.findByUserId(entity.getUserId()); // 변경한 행을 바로 다시 보여주기
+  }
+
   // 유효성 검사
   private void validate(final TodoEntity entity){
     if(entity == null){

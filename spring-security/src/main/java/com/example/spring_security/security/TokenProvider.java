@@ -1,10 +1,12 @@
 package com.example.spring_security.security;
 
+import com.example.spring_security.config.jwt.JwtProperties;
 import com.example.spring_security.entity.UserEntity;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
@@ -14,7 +16,10 @@ import java.util.Date;
 @Slf4j
 @Service
 public class TokenProvider {
-  private static final String SECRET_KEY = "bmflkbgmfglbkfmgblkfmgblk";
+//  private static final String SECRET_KEY = "bmflkbgmfglbkfmgblkfmgblk";
+
+  @Autowired
+  private JwtProperties jwtProperties;
 
   //JWT 생성
   public String create(UserEntity entity){
@@ -24,10 +29,10 @@ public class TokenProvider {
 
     return Jwts.builder()
         //header
-        .signWith(SignatureAlgorithm.HS512, SECRET_KEY)
+        .signWith(SignatureAlgorithm.HS512, jwtProperties.getSecret_key())
         //payload
         .setSubject(String.valueOf(entity.getId()))
-        .setIssuer("project name or service name")
+        .setIssuer(jwtProperties.getIssuer())
         .setIssuedAt(new Date())
         .setExpiration(expiryDate)
         //토큰 생성
@@ -38,7 +43,7 @@ public class TokenProvider {
 
   public String validateAndGetUserId(String token){
     Claims claims = Jwts.parser()
-        .setSigningKey(SECRET_KEY)
+        .setSigningKey(jwtProperties.getSecret_key())
         .parseClaimsJws(token) // base64 로 디코딩
         .getBody();
     return claims.getSubject();
